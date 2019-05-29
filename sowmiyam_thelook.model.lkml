@@ -56,7 +56,7 @@ explore: order_items {
     view_label: "Users"
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
-    fields: [users.complete_name,users.first_name,users.last_name,users.age,users.gender,users.country,users.zip, users.users_map,users.age_group]
+    fields: [users.complete_name,users.first_name,users.last_name,users.age,users.gender,users.country,users.zip, users.users_map,users.age_group, users.state]
     relationship: many_to_one
   }
 
