@@ -38,7 +38,7 @@ view: products {
     sql: ${TABLE}."NAME" ;;
   }
 
-  dimension: retail_price {
+  measure: retail_cost_price {
     type: number
     sql: ${TABLE}."RETAIL_PRICE" ;;
   }

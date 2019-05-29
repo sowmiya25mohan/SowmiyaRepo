@@ -52,11 +52,29 @@ view: users {
     sql: ${TABLE}."GENDER" ;;
   }
 
+  dimension: gender_initial {
+    case: {
+      when: {
+        sql: ${gender}='Male'
+          label='M';;
+      }
+      when: {
+        sql: ${gender}='Female'
+          label:'F';;
+      }
+    }
+
+  }
+
   dimension: last_name {
     type: string
     sql: ${TABLE}."LAST_NAME" ;;
   }
 
+  dimension: complete_name {
+    type: string
+    sql: concat(${first_name} ,' ', ${last_name}) ;;
+  }
   dimension: latitude {
     type: number
     sql: ${TABLE}."LATITUDE" ;;
@@ -65,6 +83,12 @@ view: users {
   dimension: longitude {
     type: number
     sql: ${TABLE}."LONGITUDE" ;;
+  }
+
+  dimension: users_map {
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
   }
 
   dimension: state {
@@ -82,6 +106,13 @@ view: users {
     sql: ${TABLE}."ZIP" ;;
   }
 
+  dimension: age_group {
+    type: tier
+    tiers: [0,20,40,60,80]
+    style: classic
+    sql: ${age} ;;
+
+  }
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]

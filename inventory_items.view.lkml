@@ -7,11 +7,6 @@ view: inventory_items {
     sql: ${TABLE}."ID" ;;
   }
 
-  dimension: cost {
-    type: number
-    sql: ${TABLE}."COST" ;;
-  }
-
   dimension_group: created {
     type: time
     timeframes: [
@@ -79,6 +74,29 @@ view: inventory_items {
       year
     ]
     sql: ${TABLE}."SOLD_AT" ;;
+  }
+
+  measure: cost {
+    type: number
+    sql: ${TABLE}."COST" ;;
+    value_format_name: usd_0
+  }
+
+  measure: total_cost {
+    label: "Total Cost"
+    description: "sum of Cost in USD format"
+    type: sum
+    sql: ${TABLE}.cost ;;
+    value_format_name: usd_0
+  }
+
+  measure: total_product_cost {
+    label: "Total Unique Product Cost"
+    description: "Total Unique Products Cost by Product ID"
+    type: sum_distinct
+    sql_distinct_key: ${product_id} ;;
+    sql: ${TABLE}.cost ;;
+    value_format_name: usd_0
   }
 
   measure: count {
