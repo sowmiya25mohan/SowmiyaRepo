@@ -37,6 +37,11 @@ view: users {
     sql: ${TABLE}."CREATED_AT" ;;
   }
 
+  dimension: state {
+    type: string
+    sql: ${TABLE}."STATE" ;;
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}."EMAIL" ;;
@@ -89,11 +94,6 @@ view: users {
     type: location
     sql_latitude: ${latitude} ;;
     sql_longitude: ${longitude} ;;
-  }
-
-  dimension: state {
-    type: string
-    sql: ${TABLE}."STATE" ;;
   }
 
   dimension: traffic_source {
