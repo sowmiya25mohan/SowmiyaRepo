@@ -37,10 +37,6 @@ view: users {
     sql: ${TABLE}."CREATED_AT" ;;
   }
 
-  dimension: state {
-    type: string
-    sql: ${TABLE}."STATE" ;;
-  }
 
   dimension: email {
     type: string
@@ -80,6 +76,12 @@ view: users {
     type: string
     sql: concat(${first_name} ,' ', ${last_name}) ;;
   }
+  dimension: state {
+    type: string
+    sql: ${TABLE}."STATE" ;;
+  }
+
+
   dimension: latitude {
     type: number
     sql: ${TABLE}."LATITUDE" ;;
