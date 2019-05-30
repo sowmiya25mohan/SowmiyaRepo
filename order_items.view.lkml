@@ -66,6 +66,12 @@ view: order_items {
     value_format_name: usd_0
   }
 
+  measure: total_shipping {
+    type: sum_distinct
+    sql_distinct_key:  ${TABLE}."ORDER_ID"  ;;
+    sql: ${TABLE}."SALE_PRICE" ;;
+  }
+
   measure: total_sales {
     type: sum
     drill_fields: [detail*]
