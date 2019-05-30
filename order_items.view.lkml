@@ -197,7 +197,7 @@ view: order_items {
   measure: completed_orders_percent {
     type: number
     sql:(${completed_orders})/ nullif(${count_orders},0) ;;
-    value_format_name: percent_1
+    value_format_name: percent_2
   }
 
   measure: completed_orders {
